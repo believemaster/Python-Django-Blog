@@ -6,7 +6,6 @@
             <h1 class="my-4">All Blogs
             <small>{{ title }}</small>
             </h1>
-
             {% for obj in object_list %}
             <div class="card mb-4">
                 {% if obj.image %}
@@ -15,7 +14,7 @@
                 <div class="card-body post-detail-item">
                     {% if obj.draft %}<h3>Staff Only: Draft</h3>{% endif %} {% if obj.publish > today %}<h3>Staff Only: Futute Post</h3>{% endif %}
                     <h3 class="card-title"><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a></h3>
-                    <p class="card-text">{{ obj.get_markdown|truncatechars_html:80 }}</p>
+                    <p class="card-text">{{ obj.get_markdown|truncatechars_html:100 }}</p>
                     <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary">View</a></p>
                 </div>
                 <div class="card-footer text-muted">
