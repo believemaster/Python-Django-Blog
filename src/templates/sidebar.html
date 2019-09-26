@@ -1,0 +1,73 @@
+{% load staticfiles %}
+
+{% block sidebar %}
+
+<!--SIDEBAR DOING LATER-->
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4">
+
+    <!-- Search Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Search</h5>
+        <div class="card-body">
+            <form method="GET" action="" class="row">
+                <div class="col">
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="q" placeholder="Search Blog..."
+                            value="{{ request.GET.q }}" />
+                        <span class="input-group-btn">
+                            <!-- <input class="btn btn-outline-dark" type="submit" value="Search" /> -->
+                            <button class="btn btn-outline-dark" type="submit"><i
+                                    class="fa fa-search"></i>Search</button>
+                            </spna>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Categories Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Categories</h5>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <span class="list-unstyled mb-0">
+
+                        <!-- Working but not true 
+                        {% for cat in object_list %}
+                        <a href="{% url 'posts:category_post' cat.category.slug %}" class="text-muted">
+                        {{ cat.category.name }}<small> ({{ cat.category__name__count }}) <br></small></a>
+                        {% endfor %}</span> </div> -->
+
+                        
+                            {% for cat in category_count %}
+                            <a href="{% url 'posts:category_post' cat.category__name %}" class="text-muted">
+                            {{ cat.category__name }}<small>({{ cat.category__name__count }})<br></small></a>
+                            {% endfor %}</span> </div>
+                        
+            </div>
+        </div>
+    </div> <!-- Side Widget -->
+    <div class="card my-4">
+        <h5 class="card-header">Follow Here :</h5>
+        <div class="card-body">
+            <a href="http://www.youtube.com/believamaster"><i class="fab fa-youtube-square"
+                    style="font-size: 50px; color: Dodgerblue;"> YouTube</i></a>
+            <a href="http://www.instagram.com/believemaster"><i class="fab fa-instagram"
+                    style="font-size: 50px; color: Dodgerblue;"> Instagram</i></a>
+            <a href="http://www.twitter.com/believamaster"><i class="fab fa-twitter-square"
+                    style="font-size: 50px; color: Dodgerblue;"> Twitter</i></a>
+            <a href="http://www.facebook.com/believemaster"><i class="fab fa-facebook-square"
+                    style="font-size: 50px; color: Dodgerblue;"> Facebook</i></a>
+            <a href="http://www.linkedin.com/yanikkumar"><i class="fab fa-linkedin"
+                    style="font-size: 50px; color: Dodgerblue;"> Linkedin</i></a>
+            <a href="http://www.snapchat.com/yanikkumar"><i class="fab fa-snapchat-square"
+                    style="font-size: 50px; color: Dodgerblue;"> Snapchat</i></a>
+        </div>
+    </div>
+
+</div>
+<!--sidebar ends-->
+
+{% endblock sidebar %}

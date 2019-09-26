@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-8">
+            <h1 class="my-4">All Blogs
+            <small>{{ title }}</small>
+            </h1>
+
+            {% for obj in object_list %}
+            <div class="card mb-4">
+                {% if obj.image %}
+                    <img src="{{ obj.image.url }}" class="img-fluid mx-auto rounded" width="480" height="360">
+                {% endif %}
+                <div class="card-body post-detail-item">
+                    {% if obj.draft %}<h3>Staff Only: Draft</h3>{% endif %} {% if obj.publish > today %}<h3>Staff Only: Futute Post</h3>{% endif %}
+                    <h3 class="card-title"><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a></h3>
+                    <p class="card-text">{{ obj.get_markdown|truncatechars_html:80 }}</p>
+                    <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary">View</a></p>
+                </div>
+                <div class="card-footer text-muted">
+                    <small>{{ obj.publish }} By</small>
+                    <a href="#">{% if obj.user.get_full_name %}<p>{{ obj.user.get_full_name }}</p>{% endif %}</a>
+                    Category :
+                    <a href="{% url 'posts:category_post' obj.category.slug %}">{{ obj.category.name }}</a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!--Pagination-->
+            <div class="pagination justify-content-center mb-4">
+                <span class="step-links">
+                    
+                        {% if object_list.has_previous %}
+                            <a class="page-link" href="?page=1">&laquo; First</a>
+                            <a class="page-link" href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a>
+                        {% endif %}
+
+                    <span class="current">
+                        <small class="text-muted">Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}</small>
+                    </span>
+
+                        {% if object_list.has_next %}
+                            <a class="page-link" href="?page={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a>
+                            <a class="page-link" href="?{{ page_request_var }}={{ object_list.paginator.num_pages }}">Last &raquo;</a>
+                        {% endif %}
+                </span>
+            </div>
+
+            {% comment %} <div class="col-md-6 offset-md-3">
+            <h1 class="display-1">{{ title }}</h1>
+
+            <form method="GET" action="" class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="q" placeholder="Search Blog..." value="{{ request.GET.q }}" />
+                    <span class="input-group-btn">    
+                    <!-- <input class="btn btn-outline-dark" type="submit" value="Search" /> -->    
+                        <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i>Search</button>
+                    </spna>
+                </div>
+            </div>
+            </form> 
+
+
+            {% for obj in object_list %}
+            <div class="row">
+
+
+            <div class="col-md-6">
+                <div class="card" style="width: 30rem;">
+                    {% if obj.image %}
+                    <img src="{{ obj.image.url }}" class="img-responsive" width="480" height="360">
+                    {% endif %}
+                        <div class="card-body post-detail-item">
+                            {% if obj.draft %}<h3>Staff Only: Draft</h3>{% endif %} {% if obj.publish > today %}<h3>Staff Only: Futute Post</h3>{% endif %}
+                            <h3 class="card-title"><a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a> <small>{{ obj.publish }}</small></h3>
+                            {% if obj.user.get_full_name %}<p>Author: {{ obj.user.get_full_name }}</p>{% endif %}
+                            <p class="card-text">{{ obj.get_markdown|truncatechars_html:80 }}</p>
+                            <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary">View</a></p>
+                        </div>
+                </div>
+                <hr>
+            </div>
+            </div>
+
+            {% endfor %}
+
+
+            <div class="pagination">
+                <span class="step-links">
+                    {% if object_list.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                    </span>
+
+                    {% if object_list.has_next %}
+                        <a href="?page={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+                        <a href="?{{ page_request_var }}={{ object_list.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+            {% endcomment %}
+
+        </div>
+        {% include 'sidebar.html' %}
+        
+        {% block sidebar %}
+
+        {% endblock sidebar %}
+
+    </div>
+{% endblock content %}

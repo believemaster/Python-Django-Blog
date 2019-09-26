@@ -1,0 +1,23 @@
+h1 {
+    color: #777777;
+}
+
+.wmd-panel{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.comment-reply{
+    display:none;
+}
+
+body {
+  padding-top: 56px;
+}
+
+#footer {
+    clear: both;
+    position: relative;
+    height: 40px;
+    margin-top: -40px;
+}
