@@ -39,8 +39,7 @@
         </a>
         Category :
         <a href="{% url 'posts:category_post' obj.category.slug %}">
-          {{ obj.category.name }}</a
-        >
+          {{ obj.category.name }}</a>
       </div>
     </div>
     {% endfor %}
@@ -49,40 +48,23 @@
       <span class="step-links">
         {% if object_list.has_previous %}
         <a class="page-link" href="?page=1">&laquo; First</a>
-        <a
-          class="page-link"
-          href="?{{ page_request_var }}={{
-            object_list.previous_page_number
-          }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
-          >Previous</a
-        >
+        <a class="page-link" href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Previous</a>
         {% endif %}
 
         <span class="current">
-          <small class="text-muted"
-            >Page {{ object_list.number }} of
-            {{ object_list.paginator.num_pages }}</small
-          >
+          <small class="text-muted">Page {{ object_list.number }} of
+            {{ object_list.paginator.num_pages }}</small>
         </span>
 
         {% if object_list.has_next %}
-        <a
-          class="page-link"
-          href="?page={{
-            object_list.next_page_number
-          }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}"
-          >Next</a
-        >
-        <a
-          class="page-link"
-          href="?{{ page_request_var }}={{ object_list.paginator.num_pages }}"
-          >Last &raquo;</a
-        >
+        <a class="page-link" href="?page={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Next</a>
+        <a class="page-link" href="?{{ page_request_var }}={{ object_list.paginator.num_pages }}" >Last &raquo;</a>
         {% endif %}
       </span>
     </div>
   </div>
 
-  <!-- {% include 'sidebar.html' %} {% block sidebar %} {% endblock sidebar %} -->
+  {% include 'sidebar.html' %} {% block sidebar %} {% endblock sidebar %}
+
 </div>
 {% endblock content %}

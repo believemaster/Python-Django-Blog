@@ -8,17 +8,17 @@
 
     <!-- Search Widget -->
     <div class="card my-4">
-        <h5 class="card-header">Search</h5>
+        <h5 class="card-header text-primary">Search</h5>
         <div class="card-body">
             <form method="GET" action="" class="row">
                 <div class="col">
                     <div class="input-group">
                         <input class="form-control" type="text" name="q" placeholder="Search Blog..."
-                            value="{{ request.GET.q }}" />
+                            value="{{ request.GET.q }}"/>
                         <span class="input-group-btn">
                             <!-- <input class="btn btn-outline-dark" type="submit" value="Search" /> -->
                             <button class="btn btn-outline-dark" type="submit"><i
-                                    class="fa fa-search"></i>Search</button>
+                                    class="fa fa-search"></i></button>
                             </spna>
                     </div>
                 </div>
@@ -27,43 +27,39 @@
     </div>
 
     <!-- Categories Widget -->
-    <div class="card my-4">
-        <h5 class="card-header">Categories</h5>
-        <div class="card-body">
+    <div class="card my-4" style="height: 18rem;">
+        <h5 class="card-header text-primary">Categories</h5>
+        <div class="card-body overflow-auto">
             <div class="row">
                 <div class="col-sm-12">
                     <span class="list-unstyled mb-0">
 
-                        <!-- Working but not true 
-                        {% for cat in object_list %}
-                        <a href="{% url 'posts:category_post' cat.category.slug %}" class="text-muted">
-                        {{ cat.category.name }}<small> ({{ cat.category__name__count }}) <br></small></a>
-                        {% endfor %}</span> </div> -->
-
-                        
-                            {% for cat in category_count %}
-                            <a href="{% url 'posts:category_post' cat.category__name %}" class="text-muted">
-                            {{ cat.category__name }}<small>({{ cat.category__name__count }})<br></small></a>
-                            {% endfor %}</span> </div>
-                        
+                        {% for cat in category_count %}
+                            {% for obj in object_list %}
+                            <a href="{% url 'posts:category_post' obj.category.slug %}" class="text-dark">
+                            {% endfor %}
+                            {{ cat.category__name }} &nbsp;<small>({{ cat.category__name__count }})<br></small></a>
+                        {% endfor %}
+                    </span> 
+                </div>
             </div>
         </div>
     </div> <!-- Side Widget -->
     <div class="card my-4">
-        <h5 class="card-header">Follow Here :</h5>
+        <h5 class="card-header text-primary">Follow Here :</h5>
         <div class="card-body">
-            <a href="http://www.youtube.com/believamaster"><i class="fab fa-youtube-square text-dark"
-                    style="font-size: 50px; color: Dodgerblue;"> YouTube</i></a>
+            <a href="http://www.youtube.com/believamaster">&nbsp;<i class="fab fa-youtube text-dark"
+                    style="font-size: 25px; color: Dodgerblue;"> YouTube&nbsp;</i></a>
             <a href="http://www.instagram.com/believemaster"><i class="fab fa-instagram text-dark"
-                    style="font-size: 50px; color: Dodgerblue;"> Instagram</i></a>
-            <a href="http://www.twitter.com/believamaster"><i class="fab fa-twitter-square text-dark"
-                    style="font-size: 50px; color: Dodgerblue;"> Twitter</i></a>
-            <a href="http://www.facebook.com/believemaster"><i class="fab fa-facebook-square text-dark"
-                    style="font-size: 50px; color: Dodgerblue;"> Facebook</i></a>
-            <a href="http://www.linkedin.com/yanikkumar"><i class="fab fa-linkedin text-dark"
-                    style="font-size: 50px; color: Dodgerblue;"> Linkedin</i></a>
-            <a href="http://www.snapchat.com/yanikkumar"><i class="fab fa-snapchat-square text-dark"
-                    style="font-size: 50px; color: Dodgerblue;"> Snapchat</i></a>
+                    style="font-size: 25px; color: Dodgerblue;"> Instagram</i></a>
+            <a href="http://www.twitter.com/believamaster">&nbsp;<i class="fab fa-twitter-square text-dark"
+                    style="font-size: 25px; color: Dodgerblue;"> Twitter</i></a>
+            <a href="http://www.facebook.com/believemaster">&nbsp; &nbsp; &nbsp; &nbsp;<i class="fab fa-facebook-square text-dark"
+                    style="font-size: 25px; color: Dodgerblue;"> Facebook</i></a>
+            <a href="http://www.linkedin.com/yanikkumar">&nbsp;<i class="fab fa-linkedin text-dark"
+                    style="font-size: 25px; color: Dodgerblue;"> Linkedin</i></a>
+            <a href="http://www.snapchat.com/yanikkumar">&nbsp; &nbsp;<i class="fab fa-snapchat-square text-dark"
+                    style="font-size: 25px; color: Dodgerblue;"> Snapchat</i></a>
         </div>
     </div>
 
